@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz Espiral</title>
+</head>
+<body>
+    <script>
+
+/*              Declaracion delas variables                */
+        let b = prompt("Ingresar Columnas");                /*Solicita numero de Columnas*/
+        let a = prompt("Ingresar Filas");                   /*Solicita numero de Filas*/
+        let c = a*b;                                        /*Calcula las casillas totales*/
+        let contador = 1;                                   /*Declaramos un contador*/
+        let inicio = 0;                                     /*Asignamosun un valor de Inicio*/
+        let finala = a-1;                                   /*Asignamos un valor de final de Filas*/
+        let finalb = b-1;                                   /*Asignamos un valor de final de Columnas*/
+
+
+
+/*                Estructura de la matriz                  */
+        /*Creamos un Array con el nemero de Filas ingresados*/
+
+        let matriz = Array(a);
+        for(x=0; x<=a; x++){
+            matriz[x] = Array(a);
+        }
+
+
+
+/*                        Contador                         */
+    /*Asignamos valores en cada casilla en forma de espiral*/
+
+        while(contador <= c){
+
+            for(i=inicio; i<=finalb; i++){                  /*Izquierda hacia derecha*/
+                matriz[inicio][i] = contador++;
+            }
+
+            for(i=inicio+1; i<=finala; i++){                /*Arriba hacia abajo*/
+                matriz[i][finalb] = contador++;
+            }
+
+            for(i=finalb-1; i>=inicio; i--){                /*Derecha hacia izquierda*/
+                matriz[finala][i] = contador++;
+            }
+
+            for(i=finala-1; i>=inicio+1; i--){              /*Abajo hacia arriba*/
+                matriz[i][inicio] = contador++;
+            }
+
+    /*Reasignamos el valor de inicio y final de lineas*/
+
+            inicio = inicio+1;
+            finala = finala-1;
+            finalb = finalb-1;
+        }
+        console.log(matriz);
+
+
+
+/*                     Muestreo en tabla                  */
+
+        document.write("<table border=2 align=center>");
+            for(x=0; x<a; x++){
+            document.write("<tr>");
+                for(y=0; y<b; y++){
+                document.write("<td align=center>"+matriz[x][y]+"</td>");
+                }
+        
+            document.write("</tr>");
+        }
+        document.write("<table>");
+
+    </script>
+</body>
+</html>
